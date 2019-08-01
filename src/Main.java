@@ -17,10 +17,10 @@ public class Main {
             index.add(new BigDecimal(String.valueOf(Math.floor(Math.random() * size * 100) / 100)));
         }
         Collections.sort(index);
-        for (int i = 0; i < num - 1; i++) {
+        index.add(new BigDecimal(size));
+        for (int i = 0; i < num; i++) {
             System.out.println("第" + (i + 1) + "个红包:" + (index.get(i).subtract(i == 0 ? new BigDecimal("0") : index.get(i - 1))));
         }
-        System.out.println("第" + num + "个红包:" + new BigDecimal(String.valueOf(size)).subtract(index.get(num - 2)));
     }
 
 
