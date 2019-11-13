@@ -22,15 +22,20 @@
 
 ### 代码实现
      
-       public static void hongBao(double size, int num) {
-        System.out.println("红包大小：" + size + ",数量：" + num);
-        List<BigDecimal> index = new ArrayList<>();
-        for (int i = 0; i < num - 1; i++) {
-            index.add(new BigDecimal(String.valueOf(Math.floor(Math.random() * size * 100) / 100)));
+        // 抢红包算法
+        public static void hongBao(double money, int size) {
+        System.out.println("红包金额：" + money + ",数量：" + size);
+        List<BigDecimal> index = new ArrayList<>(size);
+        // 将红包按最大金额切 size- 1个点
+        for (int i = 0; i < size - 1; i++) {
+            // ieee 754
+            index.add(new BigDecimal(String.valueOf(Math.floor(Math.random() * money * 100) / 100)));
         }
+        // 将点排序,这样任意两点之间的距离就是手气红包大小
         Collections.sort(index);
-        index.add(new BigDecimal(size));
-        for (int i = 0; i < num; i++) {
+        // 红包金额数量就是最后一个点
+        index.add(new BigDecimal(money));
+        for (int i = 0; i < size; i++) {
             System.out.println("第" + (i + 1) + "个红包:" + (index.get(i).subtract(i == 0 ? new BigDecimal("0") : index.get(i - 1))));
         }
     }
